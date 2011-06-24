@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  cod_linea: MyString
+  cod_tipo_dia: MyString
+  origen: MyString
+  hora_salida: 2011-06-13 23:59:45
+  destino: MyString
+  hora_llegada: 2011-06-13 23:59:45
+  punto: MyString
+  hora: 2011-06-13 23:59:45
+  ordinal: 1
+  sentido: MyString
+
+two:
+  cod_linea: MyString
+  cod_tipo_dia: MyString
+  origen: MyString
+  hora_salida: 2011-06-13 23:59:45
+  destino: MyString
+  hora_llegada: 2011-06-13 23:59:45
+  punto: MyString
+  hora: 2011-06-13 23:59:45
+  ordinal: 1
+  sentido: MyString

@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  cod_ubic_p: MyString
+  cod_variante: MyString
+  ordinal: 1
+  calle: MyString
+  esquina: MyString
+  cod_calle_1: MyString
+  cod_calle_2: MyString
+  x: 1.5
+  y: 1.5
+
+two:
+  cod_ubic_p: MyString
+  cod_variante: MyString
+  ordinal: 1
+  calle: MyString
+  esquina: MyString
+  cod_calle_1: MyString
+  cod_calle_2: MyString
+  x: 1.5
+  y: 1.5

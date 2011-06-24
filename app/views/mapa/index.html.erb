@@ -1,0 +1,101 @@
+
+<div id="map_canvas" style="width:50%; height:50%"></div>
+<div id="buses"></div>
+
+
+<script>
+  $(document).ready(function () {
+    initialize();
+  });
+</script>
+
+
+<script type="text/javascript">
+  function initialize() {
+
+	var allMarkers = [];
+    var latlng = new google.maps.LatLng(<%= @pos_previa[0] %>,<%= @pos_previa[1] %>);
+    var myOptions = {
+      zoom: 15,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      title:"Posición Actual"
+    });
+    initializePrincipalMarker(marker);
+
+    allMarkers.push(marker);
+
+    function initializePrincipalMarker(marker) {
+        google.maps.event.addListener(marker, 'click', function() {
+          $.get("/mapa/paradas_cercanas",{lat:marker.getPosition().lat(),lng:marker.getPosition().lng()},function(data){
+            data = eval(data);
+            $.each(data,function(i,parada) {
+              marker = new google.maps.Marker({
+                position: new google.maps.LatLng(parada.parada.lat,parada.parada.lng),
+                map: map,
+                animation: google.maps.Animation.DROP,
+                cod_ubic_p: parada.parada.cod_ubic_p
+              });
+              initializeParadaMarker(marker);
+              allMarkers.push(marker);
+            });
+          });
+          var circleOptions = {
+            strokeColor: "#3CE89A",
+            strokeOpacity: 0.9,
+            strokeWeight: 2,
+            fillColor: "#42FF74",
+            fillOpacity: 0.35,
+            map: map,
+            center: marker.getPosition(),
+            radius: 300 //metros
+          };
+          circle = new google.maps.Circle(circleOptions);
+          allMarkers.push(circle);
+        });
+    }
+
+    function initializeParadaMarker(marker) {
+        google.maps.event.addListener(marker, 'click', function() {
+          $.get("/mapa/variantes_parada",{cod_ubic_p:marker.cod_ubic_p},function(data){
+            data = eval(data);
+            var text = "";
+            $.each(data,function(i,parada) {
+              text += "<p>" + (parada.parada.descr_linea + " - " + parada.parada.descr_sublinea + "<p><br>");
+            });
+            $("#buses").html(text);
+          });
+        });
+    }
+
+    google.maps.event.addListener(map, 'click', function(event) {
+        clearOverlay();
+        placeMarker(event.latLng);
+    });
+
+    function clearOverlay() {
+      if (allMarkers) {
+        for (i in allMarkers) {
+          allMarkers[i].setMap(null);
+        }
+      }
+    }
+
+    function placeMarker(location) {
+      var clickedLocation = new google.maps.LatLng(location);
+      var marker = new google.maps.Marker({
+          position: location,
+          map: map
+      });
+      initializePrincipalMarker(marker);
+      allMarkers.push(marker);
+    }
+  }
+</script>
+

@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  cod_linea: MyString
+  descr_linea: MyString
+  cod_sublinea: MyString
+  descr_sublinea: MyString
+  cod_variante: MyString
+  descr_variante: MyString
+
+two:
+  cod_linea: MyString
+  descr_linea: MyString
+  cod_sublinea: MyString
+  descr_sublinea: MyString
+  cod_variante: MyString
+  descr_variante: MyString
