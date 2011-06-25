@@ -1,0 +1,26 @@
+
+body {
+    background-color: #6AB928;
+
+}
+
+#header {
+    font-size: 80px;
+	font-weight: normal;
+	font-family: Helvetica, sans-serif;
+	color: white;
+}
+#slidedeck_frame {
+    width: 800px;
+    height: 30%;
+}
+
+.center {
+    width: 850px;
+    margin: 0 auto 0 auto;
+}
+
+#buses{
+    overflow-y: scroll;
+    height: 180px;
+}

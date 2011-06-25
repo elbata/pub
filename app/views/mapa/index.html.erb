@@ -1,11 +1,40 @@
 
-<div id="map_canvas" style="width:50%; height:50%"></div>
-<div id="buses"></div>
+<div id="header" class="center" style="height:80px">
+  <p>uBus</p>
+</div>
+
+<br>
+
+<div id="map_canvas" class="center" style="height:30%"></div>
+
+<br>
+
+<div id="slidedeck_frame" class="skin-slidedeck center">
+    <dl class="slidedeck">
+        <dt>Ómnibus</dt>
+            <dd>
+              <div id="buses"></div>
+            </dd>
+        <dt>Horarios</dt>
+        <dd>Slide content</dd>
+    </dl>
+</div>
+
+<div id="footer" class="center" style="height:10%"></div>
 
 
-<script>
+<script type="text/javascript">
   $(document).ready(function () {
     initialize();
+    $('.slidedeck').slidedeck();
+
+    $.featureList(
+        $("#tabs li a"),
+        $("#output li"), {
+            start_item	:	1
+        }
+    );
+
   });
 </script>
 
@@ -67,7 +96,7 @@
             data = eval(data);
             var text = "";
             $.each(data,function(i,parada) {
-              text += "<p>" + (parada.parada.descr_linea + " - " + parada.parada.descr_sublinea + "<p><br>");
+              text += "<p>" + (parada.parada.descr_linea + " - " + parada.parada.descr_sublinea + "<p>");
             });
             $("#buses").html(text);
           });
@@ -99,3 +128,7 @@
   }
 </script>
 
+<!-- Help support SlideDeck! Place this noscript tag on your page when you deploy a SlideDeck to provide a link back! -->
+<noscript>
+     <p>Powered By <a href="http://www.slidedeck.com" title="Visit SlideDeck.com">SlideDeck</a></p>
+</noscript>
